@@ -1,4 +1,6 @@
-## T̴̛̮̺̣͙̫̜͇̲̆̊͆͗̐̒͐̃̈́̾́̈̔̔͘͜͝͝͝h̶̢̡̹̗̩̱͔͈͉̳̲͙̩̠̙͓̬̭͈͋̇̕ȩ̶͙̺̦̫̞̞̱̦͖̘͓̝̻̱̜̤̗̫̳̭̳͓͖̣̣̏̒̓̇͐̎͆̑̓͜͜ͅ ̶̛̛͍͕̳͉̮̳̮̤̮͈̻̼̱̦̬̻̬͍̞̰̼̪̗͇̙̰͙͙̱͍̣̗͇̖̋̀̽̐̾̂̀̃̀́́͛̏̑͒̈́̇́̈́͐̔̎̅̀̓̓̅͊̒̆̊̀̎̇̑͋̕͜͝͝C̸̡̗̤̤̟̼͇̤͖̺̪̟̤͓̦̱̦̼͎̤̬͇̜͉̹̲̲̙̹̗͚̞͈̠͚̗̣̺̊́̔̅̀́͗͂̂̌̏̃̚͜͝͠ͅư̶̢̢̛̛̟͓͍͕͓̥̹̹̥̫̮̯̦͕͙̿̈̆́̈́́̑͆͗̎̄̌̆̿͌̃̿̈͑̐͆̆͗͗͆̑͆̽͘͘̕͜͜ḇ̵̢̡̡̡̧̢̢̛͔̬̙͈̖̤̭̳̩̹̦͕͈͖̲̜͚͕͓̺̪͖̔́́̈́̍̄̍͛̂̔̄͂̈́́̈́͆́͒̃̑̐͛͠e̸̢̨̨̧̧̮̣̣̱͍͎̫̝͇̮̟͍͙͈̫͓̗̝̯̯̥͚̲͇̰͎̯̬̳̞̤̰̦͍̰̠͖̪̊̾̅̈́̏̌̀̈̆̍͛̏̈́̈̋̈́̀͗̆̈́̋̐̍͘̚̚͜͜͝ͅ
+# The decline of Attention Spans, or why this is fine and we should focus on something slightly different
+
+## **The Cube**
 
 I want you to participate in a simple though experiment: picture a society, let's call its members Cubers. It is identical to the society your parents grew up in, except for one thing: it makes use of _The Cube_.
 The Cube is a featureless white cube. It insulates as much noise as it can without causing people inside it to go insane. Inside it you can find everything you need to survive, built to be as repetitive as possible. For example, Food is dropped at consistent intervals in small pellets that land perfectly silently thanks to an air cushion. Water simply fills a waterhole, likewise at consistent intervals. The Cube, ultimately, is a Chamber of Ultimate Boredom. It is built to be as devoid of stimuli as possible without counting as sensory deprivation. In an ideal construction, a person who is about to enter The Cube can know absolutely everything that is going to happen, precise to the second, for the entire duration of their stay.
@@ -49,24 +51,5 @@ We as a society are remarkably quick to demand higher attention spans and cry ca
 
 [1] ["A Century of Grading Research: Meaning and Value in the Most
 Common Educational Measure" - Brookhart et al](https://academiccommons.columbia.edu/doi/10.7916/D8NV9JQ0)
+
 [2] ["Teaching More by Grading Less (or Differently)" - Schinske and Tanner](https://www.lifescied.org/doi/10.1187/cbe.cbe-14-03-0054)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
