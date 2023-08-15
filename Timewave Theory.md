@@ -10,6 +10,10 @@ To ensure we are all on the same page, here is an abbreviated description of the
 - The **grandfather paradox**  occurs if Crono goes to the past and prevents their grandfather from meeting their grandmother. This naturally causes their mother to never be born, causing Crono themselves to never be born, causing them to never have interfered in the past, which in turn causes them to have been born, forming a cycle. The paradox arises from how this cycle ought to switch between its two states (Crono alive and Crono dead) at an infinite frequency.
 - The **bootstrap paradox** arises when Crono finds a book about how to build a time machine on their kitchen table. They then follow its instructions, and use the resulting time machine to put the book where and when they found it in the first place. The paradox becomes apparent by considering a simple question: who wrote the book?
 
+# The One Mutable Timeline
+
+There exists a number of theories that solve the paradoxes of time travel by positing branching timelines or an immutable past. A goal of timewave theory is to do neither of those things. The past really is mutable, and what is mutated really is the traveler's past.
+
 # Finite-speed Ripple Effect
 
 The crucial element of timewave theory is the assumption that the ripple effect travels at a finite "speed", for lack of a better word.
