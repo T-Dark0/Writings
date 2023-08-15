@@ -63,6 +63,10 @@ So far, we've assumed Crono's lottery time travel is the only instance of time t
 
 Timewave theory ultimately makes an extremely simple claim: that everything moved naturally in time at the same rate of one second per second. This includes the consequences of one's actions, and such consequences are known as timewaves.
 
+# Credits
+
+I would like to thank the game Achron, which I have neither played nor seen be played, but which I have read a description of, for introducing me to the idea of finite-speed ripple effect and to the term "timewaves", which have since evolved into this model.
+
 # Footnotes
 
 1. <a name="footnote-1-body"></a>Assume a spherical society and economic system in a frictionless vacuum devoid of financial planning. <sub>[back](#footnote-1)</sub>
