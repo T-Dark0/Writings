@@ -25,9 +25,9 @@ Sanae replied glumly: "Yeah, I think the same thing. It's too bad, really."
 "Hmm. I suppose you're right." Komachi paused for a moment, seemingly lost in thought. "You could do this over time and tell her, though"  
 "What?" Sanae said, this time with confusion.  
 "If she knew, she could tell you to stop whenever. If she doesn't, clearly she's ok with it. And if you do this slowly, she will have time to notice it happen and change her mind"  
-Sanae spent a few seconds on that thought, visibly perking up as she did so. Then, she almost laughed as she spoke: "Yes. Yes! I could do that! It's perfect! Thank you so much, Komachi!"
-"See? It wasn't that difficult", Komachi smiled, "You should have told someone sooner. Surely the goddesses of your shrine could have helped"
-"Maybe? It feels like I'd get an awkward talk that means to help but doesn't really if I did that, and I assume you can imagine I'm not really up for that."
+Sanae spent a few seconds on that thought, visibly perking up as she did so. Then, she almost laughed as she spoke: "Yes. Yes! I could do that! It's perfect! Thank you so much, Komachi!"  
+"See? It wasn't that difficult", Komachi smiled, "You should have told someone sooner. Surely the goddesses of your shrine could have helped"  
+"Maybe? It feels like I'd get an awkward talk that means to help but doesn't really if I did that, and I assume you can imagine I'm not really up for that."  
 "Can I ever" Komachi sighed. "My boss keeps bothering me, I wish she'd just leave me alone already. I got distracted _one time_ and since then she doesn't even let me lie down for a while while nobody is dying." She then looked around herself for a moment, before fixing her gaze on a direction with a smirk.  
 "Uh, what's over there?" Asked Sanae.  
 "Oh, nothing. It's just that there's a large rock covered in a thick cushion of moss a few hundred meters in that direction. I've rested on it before, and I don't think the boss knows about it."  
