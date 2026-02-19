@@ -39,7 +39,7 @@ fn main(exit: fn() -> !) -> ! {
     print("Hello, World!", exit)
 }
 ```
-(Remember that, for all functions `f`, `|| f()` does the same thing as `f`, and in general `|args...| f(args...)` does the same thing as `f` regardless of the amount of arguments)  
+(Remember that, for all zero-argument functions `f`, `|| f()` does the same thing as `f`, and in general `|args...| f(args...)` does the same thing as `f` regardless of the amount of arguments)  
 We call `print`, which will of course never return, so we need to pass it `exit` as a continuation so it can call it for us.
 
 # Return
@@ -51,7 +51,7 @@ fn example(cont: () -> !) -> ! {
 }
 ```
 Think about it: when you (make `print`) call `cont`, you go on to executing the rest of the program after `example` is done. In particular, _what_ this program is isn't your choice: it's decided by your caller. This is _exactly_ like the `return` keyword conventionally works!  
-Indeed, for all functions that take a single continuation, that continuation can be thought of as _the return keyword_. `return` is a function now. Sometimes it's helpful to think of calling a continuation as returning: it makes CPS less easier to conventional code.
+Indeed, for all functions that take a single continuation, that continuation can be thought of as _the return keyword_. `return` is a function now. Sometimes it's helpful to think of calling a continuation as returning: it makes CPS easier to relate to conventional code.
 
 ## Practical applications 1: multi-level return
 
@@ -127,7 +127,7 @@ fn main(exit: fn() -> !) -> !{
 ```
 I did warn you handwritten CPS is really ugly. The fact I can't nest `number == 10` (or at least `eq(number, 10)`) inside the `if` really hurts, not to mention the indentation. That aside, you can hopefully see the principle: `if` chooses which closure to run based on whether `cond` is `true` or `false`, and then it runs it.
 
-Another interesting aspect is that these closures _both call `exit`_ (or rather, both tell `print` that its continuation is `exit`) This happens naturally whenever both branches of an `if` want to "merge back" into running the same code: they can't just _return_ to it, so they simply both call the same continuation.
+Another interesting aspect is that these closures both call `exit` (or rather, both tell `print` that its continuation is `exit`) This happens naturally whenever both branches of an `if` want to "merge back" into running the same code: they can't just _return_ to it, so they simply both call the same continuation.
 
 Lastly, I'll call your attention to the fact that, despite the fact `if` is not even a generic function, this _is_ a full-fledged `if` expression: you can translate this code
 ```rs
@@ -221,7 +221,7 @@ fn main(exit: fn() -> !) -> ! {
 (this code calls `cont` without `print` if `elem == 5`)  
 Calling `cont` causes us to proceed to the next iteration of the `for`. We can call `cont` at any time, including _instead of_ running other code inside the loop body. Would you look at that, `cont` _is_ `continue`!
 
-As for `break`, that one will actually require us to change the `for` function. Before we do that, think about `break`. Its purpose is to let the loop body skip the rest of the loop, right? Another way to say that would be that its purpose is to let the continuation of the loop body be the code after the loop: the continuation of the loop. If thinking with continuations is still difficult, think of it as "jumping" to the code after the loop.
+As for `break`, that one will actually require us to change the `for` function. Before we do that, think about `break`. Its purpose is to let the loop body skip the rest of the loop, right? Another way to say that would be that its purpose is to let the continuation of the loop body be the continuation of the loop. If thinking with continuations is still difficult, think of it as "jumping" to the code after the loop.
 
 Huh. `for` _has_ the continuation of the loop, it's the last argument. All we need to do is to pass it to `body`, so it can be called by `body` as well. Let's rename it too, for clarity.
 ```rs
@@ -318,7 +318,7 @@ You would use it like this
 ```rs
 try_catch(
     |throw, ret| {
-        if(something_goes_wrong, || throw(some_value), || ret(some_other_value)0)
+        if(something_goes_wrong, || throw(some_value), || ret(some_other_value))
     },
     |exception| handle(exception),
     |success_value| rest_of_your_program(success_value),
@@ -416,7 +416,7 @@ for elem in example() {
     print(elem)
 }
 ```
-this code will print `0`, `2`, `4`, `6`, `8`, and `99`
+this code will print `0`, `2`, `4`, `6`, `8`, and `99`, in that order.
 
 Running a generator is interesting. Conventionally, you call a function and get a generator object, which you can use as an iterator. Let's implement something like that: our generator will be something with a `next` function. We also, of course, should have a `yield` function, so we can _create_ a generator.
 ```rs
@@ -428,7 +428,7 @@ fn next<T>(gen: Generator<T>, on_elem: fn(T, Generator<T>) -> !, on_empty: fn() 
     gen.0(|g| g(on_elem, on_empty))
 }
 ```
-Note that I've CPSd the `Generator` constructor (so it takes its one argument and then the continuation to pass the wrapped argument to) and the notion of field access (which is why `.0` takes a function: it calls it with the field's value). You could argue field access doesn't _return_ anything, but I'm being as much of a purist as possible.
+Note that I've CPSd the `Generator` constructor (so it takes its one argument and then the continuation to pass the wrapped argument to) and the notion of field access (which is why `.0` takes a function: it calls it with the field's value). You could argue field access doesn't _return_ anything, since it's not a function, but I'm being as much of a purist as possible.
 
 Here's an example. In the following, assume `unreachable` is a function that crashes the program if it ever runs: it won't matter, since it won't run.
 ```rs
@@ -444,7 +444,6 @@ fn generator(handler1: fn(Number, Iterator<Number>) -> !, _ret: fn() -> !) -> ! 
 }
 // This one prints "one: 1", then "two: 2", then "three: 3", and finally "done".
 fn consume(exit: fn() -> !) {
-  // Tuple struct constructors are functions too, so they can use CPS
   Generator(generator, |gen| next(gen, 
         |one, rest| print("one: {one}", || next(rest,
             |two, rest| print("two: {two}", || next(rest,
@@ -587,11 +586,11 @@ fn coroutine() -> Coroutine<String, Bool, Number> {
 }
 fn consume() {
     let coro = coroutine();
-    let CoroState::Yield(foo) = coro.next(1) else { unreachable() };
+    let CoroState::Yield(foo, coro) = coro.next(1) else { unreachable() };
     print(foo);
-    let CoroState::Yield(bar) = coro.next(2) else { unreachable() };
+    let CoroState::Yield(bar, coro) = coro.next(2) else { unreachable() };
     print(bar);
-    let CoroState::Yield(baz) = coro.next(3) else { unreachable() };
+    let CoroState::Yield(baz, coro) = coro.next(3) else { unreachable() };
     print(baz);
     let CoroState::Return(t) = coro.next(99) else { unreachable() };
     print(t);
@@ -639,19 +638,20 @@ Other than that, the logic is exactly the same. We unwrap `coro` and proceed to 
 
 In conventional parser design, one needs to have the entire input on hand before they can call `parse`. If I try to ask rustc to parse a source file that reads `fn main() { printl`, I'm going to get a whole bunch of error messages, even though this code isn't exactly _wrong_: it's _incomplete_. You can imagine a way to add more code that would make what I've written perfectly valid without any other change.
 
-This design is perfectly suitable for most parsers, but not necessarily _all_ of them. In some cases, you may want to be able to easily alternate between receiving data from a network connection and parsing the data you have received. The simplest way to design such a parser uses coroutines: The parser receives some input, advances its internal state consuming the input as it goes along, and eventually runs out. When it does, it `yield`s to the caller, remaining suspended. As soon as the caller can supply additional input, they can resume the parser from where it left off by calling `next`, passing the new block of input as a resume argument. Finally, when the parser is done (i.e. it has identified a complete message or found a definite error), it can return its result as normal. 
+This design is perfectly suitable for most parsers, but not necessarily _all_ of them. In some cases, you may want to be able to receive data in chunks and parse it incrementally as the chunks arrive without having to wait for them all. For example, you might be interested in alternating between receiving data from a network connection and parsing the data you have received. The simplest way to design such a parser uses coroutines: The parser receives some input, advances its internal state consuming the input as it goes along, and eventually runs out. When it does, it `yield`s to the caller, remaining suspended. As soon as the caller can supply additional input, they can resume the parser from where it left off by calling `next`, passing the new block of input as a resume argument. Finally, when the parser is done (i.e. it has identified a complete message or found a definite error), it can return its result as normal.
+This particular coroutine, interestingly, uses a `next` argument and a return value, but doesn't really `yield` any value. Given the type is `Coroutine<Y, R, N>`, a streaming parser might be a `Coroutine<(), &[u8], Result<Output, Error>>`. 
 
-This particular coroutine, interestingly, uses a `next` argument and a return value, but doesn't really `yield` any value. Given the type is `Coroutine<Y, R, N>`, a streaming parser might be a `Coroutine<(), &[u8], Result<Output, Error>>`. Alternatively, a streaming parser might yield values describing the results of partial parses, or hints as to how much more input it expects to need.
+Alternatively or additionally, you may use the yield value for something: perhaps your parser simultaneously returns information about a given chunk of text and builds up a final return value: if you yield the information, your caller can get it immediately, which may, for example, help them decide whether they even care about the rest of the input.
 
 ## Practical applications 4: Async
 
 When reading the previous section, you might have noticed that it's basically async code: you have a function that runs concurrently with a network request, and at any time it can choose to sit around and wait for the response to arrive before continuing.
 
-More generally, the abstract idea of coroutines, the `Coroutine` type, is a natural model for async. The `yield` and `next` functions, however, are not, and want to be replaced.
+More generally, the abstract idea of coroutines, the `Coroutine` type, is a natural model for async. The `yield` and `next` functions, however, are not and should be replaced.
 - `yield` is the function that lets you suspend your coroutine for no particular reason, and doesn't arrange for it to be resumed automatically. This is not quite what you want. In async, you'd want to have a plethora of functions, each specific to a task. For example, you might have an async `get_data` function which starts a download. This function would want to take, on top of its normal arguments, a continuation to be invoked once the download is complete, which is basically the `resume` argument `yield` takes (if you're wondering where the `handler` argument went, async has very little need for it. You can still write it into your functions if it helps, but it rarely will).
 - `next` lets you resume a coroutine. This is nice, but the download in progress won't immediately complete just because you called `next`. In async, you generally want `get_data` to be the one to "jump into" the rest of the coroutine, which it will do when it's time. This is still identifiably a coroutine, though: `get_data` just resumes it. It even passes a resume argument: the result of the download.
 
-If you've used sufficiently old JavaScript, you might know this approach by the name "callback hell". Yes indeed, JS users did not particularly like doing async like this. Ironically, while they eventually solved their problem by doing _fewer_ callbacks (which worked great and is a good solution), the CPS approach is to solve the problem by doing _more_ callbacks. After all, once you live in a world where `return`, `break`, `continue`, exceptions, contexts, generators, and any other form of control flow you can come up with, _already work across functions_, you don't really lose any expressiveness by adding callbacks. You definitely do lose _readability_, but as I reiterated several times, this problem is inherent in CPS no matter what, and can be fixed with macros or a syntax transformation built into the language. You can even reinvent async/await, and desugar them in terms of CPS.
+If you've used sufficiently old JavaScript, you might know this approach by the name "callback hell". Yes indeed, JS users did not particularly like doing async like this. Ironically, while they eventually solved their problem by doing _fewer_ callbacks (which worked great and was the correct solution for JS), the CPS approach is to solve the problem by doing _more_ callbacks. After all, once you live in a world where `return`, `break`, `continue`, exceptions, contexts, generators, and any other form of control flow you can come up with, _already work across functions_, you don't really lose any expressiveness by adding callbacks. You definitely do lose _readability_, but as I reiterated several times, this problem is inherent in CPS no matter what, and can be fixed with macros or a syntax transformation built into the language. You can even reinvent async/await, and desugar them in terms of CPS.
 
 ## Practical applications 5: Sans-IO
 
