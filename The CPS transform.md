@@ -78,7 +78,9 @@ fn code_block() {
 ```
 This refactoring is impossible if the really long code block happens to use the `return` keyword: after the refactoring, it returns from `code_block`, but we'd really rather it return from `long`. Making `return` a function fixes this problem: we can now refactor like this
 ```rs
-// this code block is not fully written in CPS, since it's about something you might want to _actually handwrite in real code_. It does, however, use the CPS concept of replacing return with a continuation
+// this code block is not fully written in CPS, since it's about something you 
+// might want to _actually handwrite in real code_. It does, however, use the 
+// CPS concept of replacing return with a continuation
 
 // turn this
 fn long(ret: fn() -> !) {
@@ -88,14 +90,14 @@ fn long(ret: fn() -> !) {
         ret()
         // pile of code after
     }
-    teardown()
+    maybe_unnecessary_teardown() //clearly, if the block of code returns, this does not run
 }
 
 // into this
 fn long(ret: fn() -> !) {
     setup()
     code_block(ret)
-    teardown()
+    maybe_unnecessary_teardown()
 }
 fn code_block(long_ret: fn() -> !) {
     // pile of code before
